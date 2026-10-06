@@ -35,4 +35,4 @@ tests/MeetAndGrit.Tests
 ## Deployment
 
 Every push to `main` runs `.github/workflows/deploy.yml`. It runs the tests, publishes the app, and deploys it to GitHub Pages.
-The workflow sets Blazor's base path to the repository name automatically, so renaming the repo doesn't break anything.
+The workflow asks GitHub Pages where the site is served from and sets Blazor's base path to match. That works for a custom domain (currently https://acrylik.spinelly.net, served from the root) and for a plain `github.io/<repo>/` address.

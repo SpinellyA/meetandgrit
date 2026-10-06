@@ -33,12 +33,16 @@ jobs:
       - name: Publish
         run: dotnet publish src/MeetAndGrit.Web --configuration Release --output publish
 
+      # Asks GitHub where the site is served from: "/<repo-name>" for a plain
+      # github.io project site, or "" when a custom domain is set.
+      - id: pages
+        uses: actions/configure-pages@v5
+
       - name: Prepare for GitHub Pages
         run: |
-          # Project sites live under /<repo-name>/, so Blazor needs that as its base path.
-          # A <user>.github.io repo is served from the root instead.
-          REPO="${{ github.event.repository.name }}"
-          if [[ "$REPO" == *.github.io ]]; then BASE="/"; else BASE="/$REPO/"; fi
+          # Blazor loads all of its files relative to <base href>, so it has to match the real path.
+          BASE="${{ steps.pages.outputs.base_path }}/"
+          echo "Using base href: $BASE"
           sed -i "s|<base href=\"/\" />|<base href=\"$BASE\" />|" publish/wwwroot/index.html
 
           # Opening a deep link like /space directly would 404 on GitHub Pages.
