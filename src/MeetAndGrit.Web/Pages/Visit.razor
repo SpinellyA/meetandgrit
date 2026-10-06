@@ -1,0 +1,46 @@
+@page "/visit"
+
+<PageTitle>Visit · Meet &amp; Grit</PageTitle>
+
+<PageIntro Eyebrow="Visit" Title="Sambag, Urgello, Cebu City.">
+    Hours, directions, and the latest updates. Fully booked days are posted here first.
+</PageIntro>
+
+@if (Info is not null)
+{
+    <section class="band">
+        <div class="container visit-grid">
+            <div class="card">
+                <h2>Hours</h2>
+                <dl class="hours">
+                    @foreach (var hours in Info.Hours)
+                    {
+                        <div>
+                            <dt>@hours.Days</dt>
+                            <dd>@DisplayFormat.Time(hours.Opens) to @DisplayFormat.Time(hours.Closes)</dd>
+                        </div>
+                    }
+                </dl>
+            </div>
+
+            <div class="card card-ink on-ink">
+                <h2>Getting here</h2>
+                <p class="lead">@Info.Address</p>
+                <div class="links">
+                    <a class="btn btn-lime" href="@Info.MapUrl" target="_blank" rel="noopener">Open in Google Maps</a>
+                    <a class="btn btn-outline" href="@Info.FacebookUrl" target="_blank" rel="noopener">Message us on Facebook</a>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<section class="band on-concrete-deep">
+    <div class="container announcements-grid">
+        <div>
+            <h2 class="section-title">Announcements</h2>
+            <p class="lead muted">Events, schedule changes, and days when every seat is taken.</p>
+        </div>
+        <AnnouncementList />
+    </div>
+</section>

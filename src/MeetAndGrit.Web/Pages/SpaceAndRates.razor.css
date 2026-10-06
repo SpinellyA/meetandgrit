@@ -1,0 +1,170 @@
+.section-title {
+    font-size: var(--step-1);
+}
+
+/* ---------- Zones ---------- */
+
+.zones {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.zone {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 1rem 3rem;
+    padding-block: 2rem;
+    border-top: 2px solid var(--ink);
+}
+
+.zone:last-child {
+    border-bottom: 2px solid var(--ink);
+}
+
+.zone h2 {
+    font-size: var(--step-2);
+}
+
+.zone-name .label {
+    margin-top: 0.75rem;
+}
+
+.zone-body p {
+    font-size: 1.1rem;
+    max-width: 50ch;
+}
+
+.amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.amenities li {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: var(--chalk);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ---------- Board ---------- */
+
+.board-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.board-lead {
+    margin-block: 1.5rem 2rem;
+}
+
+/* ---------- Rates ---------- */
+
+.rates-lead {
+    margin-block: 1rem 2.5rem;
+}
+
+.rates {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* ---------- Steps ---------- */
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+}
+
+.step {
+    counter-increment: step;
+    padding-top: 1.25rem;
+    border-top: 2px solid var(--ink);
+}
+
+.step::before {
+    content: counter(step);
+    display: inline-grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    background: var(--ink);
+    color: var(--lime);
+    font-family: var(--font-display);
+    font-weight: 850;
+}
+
+.step h3 {
+    margin-bottom: 0.5rem;
+}
+
+.step p {
+    color: var(--graphite);
+}
+
+/* ---------- Rules ---------- */
+
+.rules-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 2rem 3rem;
+}
+
+.rules {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.1rem;
+}
+
+.rules li {
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--concrete-deep);
+}
+
+.rules li:first-child {
+    padding-top: 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 960px) {
+    .board-grid,
+    .rules-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .rates,
+    .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .zone {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .rates,
+    .steps {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

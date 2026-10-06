@@ -1,0 +1,41 @@
+@page "/menu"
+
+<PageTitle>Menu · Meet &amp; Grit</PageTitle>
+
+<PageIntro Eyebrow="Menu" Title="Coffee first. Then everything else.">
+    Order at the counter. Everything is available whether you're booked for the day or just dropping by.
+</PageIntro>
+
+<section class="band">
+    <div class="container menu-grid">
+        @foreach (var section in Sections)
+        {
+            <section class="menu-section" aria-labelledby="@SectionId(section)">
+                <header>
+                    <h2 id="@SectionId(section)">@section.Title</h2>
+                    <p class="label muted">@section.Note</p>
+                </header>
+
+                <ul class="items">
+                    @foreach (var item in section.Items)
+                    {
+                        <li class="item">
+                            <div class="item-line">
+                                <h3>@item.Name</h3>
+                                <span class="leader" aria-hidden="true"></span>
+                                <span class="price">@DisplayFormat.Peso(item.Price)</span>
+                            </div>
+                            <p class="muted">
+                                @item.Description
+                                @if (item.IsHouseFavorite)
+                                {
+                                    <span class="label favorite">House favorite</span>
+                                }
+                            </p>
+                        </li>
+                    }
+                </ul>
+            </section>
+        }
+    </div>
+</section>

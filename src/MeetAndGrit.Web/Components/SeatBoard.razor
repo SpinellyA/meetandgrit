@@ -1,0 +1,55 @@
+@* Top-down floor plan of the cafe. Lime seats are open right now. *@
+<figure class="seat-board">
+    <figcaption class="board-head">
+        <span class="label">Seats right now</span>
+        @if (Summary is not null)
+        {
+            <span class="count" data-testid="open-count">
+                <strong>@Summary.Open</strong> of @Summary.Total open
+            </span>
+        }
+    </figcaption>
+
+    <svg viewBox="0 0 400 300" role="img" aria-label="@AccessibleDescription">
+        @* Zones and furniture *@
+        <rect class="zone" x="24" y="16" width="352" height="36" rx="8" />
+        <text class="zone-name" x="30" y="66">Window bar</text>
+
+        <rect class="table" x="36" y="108" width="152" height="28" rx="6" />
+        <rect class="table" x="221" y="108" width="152" height="28" rx="6" />
+        <text class="zone-name" x="36" y="180">Long tables</text>
+
+        <rect class="glass" x="24" y="190" width="132" height="100" rx="10" />
+        <rect class="table" x="45" y="237" width="80" height="20" rx="4" />
+        <text class="zone-name" x="34" y="204">Meeting room</text>
+
+        <rect class="zone" x="214" y="190" width="162" height="100" rx="10" />
+        <rect class="shelf" x="356" y="200" width="10" height="80" rx="2" />
+        <circle class="table" cx="280" cy="248" r="11" />
+        <text class="zone-name" x="222" y="204">Reading nook</text>
+
+        @* Seats *@
+        @for (var index = 0; index < Seats.Count; index++)
+        {
+            var seat = Seats[index];
+            <g class="seat seat-@seat.Status.ToString().ToLowerInvariant()" style="--i:@index">
+                <title>@DescribeSeat(seat)</title>
+                <circle cx="@seat.X" cy="@seat.Y" r="10" />
+            </g>
+
+            @if (seat.NappingCat is not null)
+            {
+                <g class="cat">
+                    <title>@seat.NappingCat is napping here</title>
+                    <CatGlyph x="@(seat.X - 15)" y="@(seat.Y - 17)" width="30" height="21" />
+                </g>
+            }
+        }
+    </svg>
+
+    <ul class="legend" aria-hidden="true">
+        <li><span class="key key-open"></span>Open</li>
+        <li><span class="key key-occupied"></span>Taken</li>
+        <li><span class="key key-reserved"></span>Reserved</li>
+    </ul>
+</figure>

@@ -1,0 +1,34 @@
+<article class="rate-card @(Rate.IsMembership ? "is-membership" : null)">
+    <header>
+        <h3>@Rate.Name</h3>
+        @if (Rate.IsMembership)
+        {
+            <span class="label tag">Membership</span>
+        }
+    </header>
+
+    <p class="price">
+        <span class="amount">@DisplayFormat.Peso(Rate.Price)</span>
+        <span class="unit">@Rate.Unit</span>
+    </p>
+
+    <p class="summary">@Rate.Summary</p>
+
+    @if (ShowIncludes)
+    {
+        <ul class="includes">
+            @foreach (var item in Rate.Includes)
+            {
+                <li>@item</li>
+            }
+        </ul>
+    }
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public Rate Rate { get; set; } = default!;
+
+    [Parameter]
+    public bool ShowIncludes { get; set; } = true;
+}

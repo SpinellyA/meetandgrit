@@ -1,0 +1,319 @@
+/* =========================================================
+   Meet & Grit — global tokens and base styles
+   Component-specific styles live next to each component
+   in its .razor.css file (Blazor scoped CSS).
+   ========================================================= */
+
+:root {
+    /* Color — pulled from the logo and the actual interior */
+    --ink: #1a1a1a;          /* logo background */
+    --ink-raised: #262625;   /* cards on ink */
+    --lime: #dadf21;         /* the "&" tile */
+    --lime-pressed: #c4c912;
+    --concrete: #e6e4df;     /* cement walls */
+    --concrete-deep: #d4d1ca;
+    --oak: #a87b52;          /* wood counter and tables */
+    --chalk: #ffffff;
+    --graphite: #55534e;     /* secondary text on concrete */
+    --fog: #a3a19b;          /* secondary text on ink */
+    --focus: var(--ink);
+
+    /* Type */
+    --font-display: "Archivo", "Arial Black", sans-serif;
+    --font-label: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --font-body: "Instrument Sans", "Segoe UI", sans-serif;
+
+    --step-hero: clamp(3rem, 5.6vw + 0.75rem, 6.75rem);
+    --step-1: clamp(1.9rem, 4.5vw + 0.5rem, 4.25rem);
+    --step-2: clamp(1.5rem, 2vw + 0.75rem, 2.25rem);
+    --step-3: 1.25rem;
+
+    /* Shape and space */
+    --radius-tile: 14px;     /* matches the rounded "&" tile */
+    --gutter: clamp(16px, 4vw, 48px);
+    --band-space: clamp(4rem, 9vw, 8rem);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--concrete);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+img, svg {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-stretch: 115%;
+    font-weight: 850;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    /* Wide uppercase words can be longer than a phone screen */
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+h3 {
+    font-size: var(--step-3);
+    font-stretch: 105%;
+    line-height: 1.15;
+}
+
+p {
+    margin: 0;
+}
+
+/* ---------- Layout helpers ---------- */
+
+.container {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+.band {
+    padding-block: var(--band-space);
+}
+
+.on-ink {
+    background: var(--ink);
+    color: var(--chalk);
+    --focus: var(--lime);
+}
+
+.on-concrete-deep {
+    background: var(--concrete-deep);
+}
+
+/* Small uppercase label that mirrors "CAFE + COWORKING" in the logo */
+.label {
+    display: inline-block;
+    font-family: var(--font-label);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.lead {
+    font-size: 1.2rem;
+    max-width: 38ch;
+}
+
+.muted {
+    color: var(--graphite);
+}
+
+.on-ink .muted {
+    color: var(--fog);
+}
+
+/* The rounded lime "&" tile from the logo, used to mark a highlight */
+.amp {
+    display: inline-grid;
+    place-items: center;
+    width: 1.05em;
+    height: 1.05em;
+    border-radius: 0.2em;
+    background: var(--lime);
+    color: var(--ink);
+    font-size: 0.9em;
+    vertical-align: 0.04em;
+    line-height: 1;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.7rem 1.4rem;
+    border: 2px solid transparent;
+    border-radius: var(--radius-tile);
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 150ms ease, transform 150ms ease, border-color 150ms ease;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-lime {
+    background: var(--lime);
+    color: var(--ink);
+}
+
+.btn-lime:hover {
+    background: var(--lime-pressed);
+}
+
+.btn-ink {
+    background: var(--ink);
+    color: var(--chalk);
+}
+
+.btn-ink:hover {
+    background: #000;
+}
+
+.btn-outline {
+    border-color: currentColor;
+    color: inherit;
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+/* Inline text link with an arrow, e.g. "See all rates →" */
+.arrow-link {
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 2px;
+}
+
+.arrow-link::after {
+    content: " →";
+}
+
+.arrow-link:hover {
+    color: var(--graphite);
+}
+
+.on-ink .arrow-link:hover {
+    color: var(--lime);
+}
+
+/* ---------- Accessibility ---------- */
+
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    padding: 0.6rem 1rem;
+    background: var(--lime);
+    color: var(--ink);
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ---------- Boot screen (shown while WebAssembly loads) ---------- */
+
+.boot {
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 1.5rem;
+    background: var(--ink);
+}
+
+.boot__bar {
+    width: 160px;
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--lime) var(--blazor-load-percentage, 0%), #333 0);
+}
+
+/* ---------- Blazor error UI ---------- */
+
+#blazor-error-ui {
+    color-scheme: light only;
+    background: var(--lime);
+    color: var(--ink);
+    bottom: 0;
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: 0.8rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    font-weight: 600;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.6rem;
+}
+
+.blazor-error-boundary {
+    background: #b32121;
+    padding: 1rem;
+    color: white;
+}
+
+.blazor-error-boundary::after {
+    content: "Something went wrong on this part of the page.";
+}

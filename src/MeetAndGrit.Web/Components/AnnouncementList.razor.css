@@ -1,0 +1,51 @@
+.announcements {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.announcement {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 1.4rem;
+    border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.announcement:last-child {
+    border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.kind {
+    padding: 0.05rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    border: 1.5px solid currentColor;
+}
+
+/* Fully booked is the one people most need to notice */
+.kind-booked {
+    background: var(--lime);
+    border-color: var(--lime);
+    color: var(--ink);
+}
+
+.date {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+h3 {
+    font-size: 1.15rem;
+}
+
+p {
+    max-width: 60ch;
+    opacity: 0.85;
+}

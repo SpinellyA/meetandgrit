@@ -1,0 +1,26 @@
+@* Placeholder for screens other teammates are building. *@
+<PageIntro Eyebrow="@Eyebrow" Title="@Title">
+    @Description
+</PageIntro>
+
+<section class="band">
+    <div class="container placeholder">
+        <p class="label muted">Coming soon in this prototype</p>
+        <p class="lead">In the meantime, you can check what's open or browse the menu.</p>
+        <div class="actions">
+            <a class="btn btn-ink" href="space">See space &amp; rates</a>
+            <a class="btn btn-outline" href="">Back to home</a>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Eyebrow { get; set; } = string.Empty;
+
+    [Parameter, EditorRequired]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter, EditorRequired]
+    public string Description { get; set; } = string.Empty;
+}

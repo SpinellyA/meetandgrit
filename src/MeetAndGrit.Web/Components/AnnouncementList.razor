@@ -1,0 +1,13 @@
+<ul class="announcements">
+    @foreach (var announcement in Announcements)
+    {
+        <li class="announcement">
+            <div class="meta">
+                <span class="label kind kind-@KindClass(announcement.Kind)">@KindLabel(announcement.Kind)</span>
+                <span class="label date">Posted @DisplayFormat.ShortDate(announcement.Date)</span>
+            </div>
+            <h3>@announcement.Title</h3>
+            <p>@announcement.Body</p>
+        </li>
+    }
+</ul>

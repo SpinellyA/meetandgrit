@@ -1,0 +1,76 @@
+.visit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.card {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border-radius: 20px;
+    background: var(--chalk);
+}
+
+.card h2 {
+    font-size: var(--step-2);
+}
+
+.hours {
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.hours div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--concrete-deep);
+    font-size: 1.1rem;
+}
+
+.hours dt {
+    color: var(--graphite);
+}
+
+.hours dd {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Needs its own rule: .card above would otherwise win over the global .on-ink background */
+.card-ink {
+    background: var(--ink);
+}
+
+.card-ink .lead {
+    margin-top: 1.25rem;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2rem;
+}
+
+.section-title {
+    font-size: var(--step-1);
+}
+
+.announcements-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 2rem 4rem;
+}
+
+.announcements-grid .lead {
+    margin-top: 1rem;
+}
+
+@media (max-width: 860px) {
+    .visit-grid,
+    .announcements-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

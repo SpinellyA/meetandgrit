@@ -1,0 +1,22 @@
+@* Top-of-page header used by every page except Home. *@
+<section class="page-intro on-ink">
+    <div class="container">
+        <p class="label eyebrow">@Eyebrow</p>
+        <h1>@Title</h1>
+        @if (ChildContent is not null)
+        {
+            <div class="lead intro-lead">@ChildContent</div>
+        }
+    </div>
+</section>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Eyebrow { get; set; } = string.Empty;
+
+    [Parameter, EditorRequired]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

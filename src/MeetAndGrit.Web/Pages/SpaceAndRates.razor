@@ -1,0 +1,91 @@
+@page "/space"
+
+<PageTitle>Space &amp; rates · Meet &amp; Grit</PageTitle>
+
+<PageIntro Eyebrow="Space & rates" Title="Find your corner.">
+    Four areas, 32 seats, one long counter of coffee. Pick the spot that fits what you came to do.
+</PageIntro>
+
+@* ---------- Zones ---------- *@
+<section class="band">
+    <div class="container">
+        <ul class="zones">
+            @foreach (var zone in Zones)
+            {
+                <li class="zone">
+                    <div class="zone-name">
+                        <h2>@zone.Name</h2>
+                        <p class="label muted">@zone.Seats seats · Good for @zone.GoodFor.ToLowerInvariant()</p>
+                    </div>
+                    <div class="zone-body">
+                        <p>@zone.Description</p>
+                        <ul class="amenities">
+                            @foreach (var amenity in zone.Amenities)
+                            {
+                                <li>@amenity</li>
+                            }
+                        </ul>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
+
+@* ---------- Live board ---------- *@
+<section class="band on-ink">
+    <div class="container board-grid">
+        <div>
+            <h2 class="section-title">What's open right now</h2>
+            <p class="lead muted board-lead">
+                Lime seats are free. Dashed ones are reserved for later today. You pick your exact seat
+                when you reserve.
+            </p>
+            <a class="btn btn-lime" href="reserve">Reserve a seat</a>
+        </div>
+        <SeatBoard />
+    </div>
+</section>
+
+@* ---------- Rates ---------- *@
+<section class="band">
+    <div class="container">
+        <h2 class="section-title">Rates</h2>
+        <p class="lead muted rates-lead">Coffee and food are ordered separately at the counter.</p>
+        <ul class="rates">
+            @foreach (var rate in Rates)
+            {
+                <li><RateCard Rate="rate" /></li>
+            }
+        </ul>
+    </div>
+</section>
+
+@* ---------- How a visit works (a real sequence, so it's numbered) ---------- *@
+<section class="band on-concrete-deep">
+    <div class="container">
+        <h2 class="section-title">How a visit works</h2>
+        <ol class="steps">
+            @foreach (var step in VisitSteps)
+            {
+                <li class="step">
+                    <h3>@step.Title</h3>
+                    <p>@step.Detail</p>
+                </li>
+            }
+        </ol>
+    </div>
+</section>
+
+@* ---------- House rules ---------- *@
+<section class="band">
+    <div class="container rules-grid">
+        <h2 class="section-title">House rules</h2>
+        <ul class="rules">
+            @foreach (var rule in HouseRules)
+            {
+                <li>@rule</li>
+            }
+        </ul>
+    </div>
+</section>

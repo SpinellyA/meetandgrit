@@ -1,0 +1,128 @@
+@page "/"
+
+<PageTitle>Meet &amp; Grit · Cafe + Coworking in Urgello, Cebu</PageTitle>
+
+@if (FullyBookedNotice is not null)
+{
+    <a class="notice" href="visit">
+        <span class="label">Heads up</span>
+        <span>@FullyBookedNotice.Title&nbsp;<span class="notice-more" aria-hidden="true">→</span></span>
+    </a>
+}
+
+@* ---------- Hero ---------- *@
+<section class="hero on-ink">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <p class="label muted">Cafe + coworking · Sambag, Urgello</p>
+            <h1>Pull up<br /> a chair.</h1>
+            <p class="lead">
+                Work, study, read, or just hang out with good coffee and a few resident cats.
+                Check what's open, then save your seat before you head over.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-lime" href="reserve">Reserve a seat</a>
+                <a class="btn btn-outline" href="space">See space &amp; rates</a>
+            </div>
+        </div>
+
+        <SeatBoard />
+    </div>
+</section>
+
+@* ---------- Photo ---------- *@
+<figure class="photo">
+    <img src="img/interior.webp"
+         alt="Customers working and gaming at the long tables inside Meet & Grit, with the glass meeting room in the back."
+         width="1364" height="908" loading="lazy" />
+    <figcaption class="container">
+        <span class="label">The long tables, on a weekday afternoon</span>
+    </figcaption>
+</figure>
+
+@* ---------- What people come for ---------- *@
+<section class="band">
+    <div class="container">
+        <h2 class="section-title">Work <span class="amp">&amp;</span> everything else</h2>
+
+        <ul class="uses">
+            @foreach (var use in Uses)
+            {
+                <li class="use">
+                    <span class="use-word">@use.Word</span>
+                    <p class="use-detail">@use.Detail</p>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
+
+@* ---------- House cats ---------- *@
+@if (Info is not null)
+{
+    <section class="band on-concrete-deep">
+        <div class="container">
+            <div class="section-head">
+                <h2 class="section-title">The house cats</h2>
+                <p class="lead muted">They don't work here, but they clock in every day. Be nice and they might share your chair.</p>
+            </div>
+
+            <ul class="cats">
+                @foreach (var cat in Info.Cats)
+                {
+                    <li class="cat-card">
+                        <CatGlyph class="cat-icon" />
+                        <h3>@cat.Name</h3>
+                        <p>@cat.Habit</p>
+                        <p class="label muted">Usually found: @cat.FavoriteSpot</p>
+                    </li>
+                }
+            </ul>
+        </div>
+    </section>
+}
+
+@* ---------- Rates teaser ---------- *@
+<section class="band">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">Pay for the time you stay</h2>
+            <a class="arrow-link" href="space">Full rates and zones</a>
+        </div>
+
+        <ul class="rates">
+            @foreach (var rate in Rates)
+            {
+                <li><RateCard Rate="rate" ShowIncludes="false" /></li>
+            }
+        </ul>
+    </div>
+</section>
+
+@* ---------- Visit + announcements ---------- *@
+<section class="band on-ink">
+    <div class="container visit-grid">
+        <div>
+            <h2 class="section-title">Come by</h2>
+            @if (Info is not null)
+            {
+                <p class="lead">@Info.Address</p>
+                <dl class="hours">
+                    @foreach (var hours in Info.Hours)
+                    {
+                        <div>
+                            <dt>@hours.Days</dt>
+                            <dd>@DisplayFormat.Time(hours.Opens) to @DisplayFormat.Time(hours.Closes)</dd>
+                        </div>
+                    }
+                </dl>
+            }
+            <a class="arrow-link" href="visit">Directions and contact</a>
+        </div>
+
+        <div>
+            <p class="label muted announcements-label">Announcements</p>
+            <AnnouncementList MaxItems="2" />
+        </div>
+    </div>
+</section>

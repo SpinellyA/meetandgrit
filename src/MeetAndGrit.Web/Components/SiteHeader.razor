@@ -1,0 +1,30 @@
+<header class="site-header on-ink">
+    <div class="container bar">
+        <a class="brand" href="" aria-label="Meet & Grit home">
+            <img src="img/logo-mark.png" alt="" width="94" height="48" />
+        </a>
+
+        <button class="menu-toggle"
+                type="button"
+                aria-expanded="@IsMenuOpen.ToString().ToLowerInvariant()"
+                aria-controls="site-nav"
+                @onclick="ToggleMenu">
+            <span>@(IsMenuOpen ? "Close" : "Menu")</span>
+        </button>
+
+        <nav id="site-nav" class="nav @(IsMenuOpen ? "is-open" : null)" aria-label="Main">
+            <ul class="links">
+                @foreach (var link in Links)
+                {
+                    <li>
+                        <NavLink class="link" href="@link.Href" Match="NavLinkMatch.All">@link.Text</NavLink>
+                    </li>
+                }
+            </ul>
+            <div class="actions">
+                <NavLink class="link" href="login">Log in</NavLink>
+                <a class="btn btn-lime" href="reserve">Reserve a seat</a>
+            </div>
+        </nav>
+    </div>
+</header>

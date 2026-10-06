@@ -1,0 +1,122 @@
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid #2c2c2b;
+}
+
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 72px;
+}
+
+.brand img {
+    height: 44px;
+    width: auto;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.links {
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* ::deep reaches the <a> that NavLink renders */
+.nav ::deep .link {
+    position: relative;
+    font-family: var(--font-label);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--chalk);
+}
+
+.nav ::deep .link:hover {
+    color: var(--lime);
+}
+
+/* Current page gets a lime underline */
+.nav ::deep .link.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--lime);
+}
+
+.menu-toggle {
+    display: none;
+    min-height: 44px;
+    padding: 0 1rem;
+    border: 2px solid var(--chalk);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--chalk);
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+@media (max-width: 860px) {
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+        padding: 1.5rem var(--gutter) 2rem;
+        background: var(--ink);
+        border-bottom: 1px solid #2c2c2b;
+    }
+
+    .nav.is-open {
+        display: flex;
+    }
+
+    .links {
+        flex-direction: column;
+        gap: 1.1rem;
+    }
+
+    .nav ::deep .link {
+        font-size: 1.5rem;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
